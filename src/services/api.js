@@ -10,6 +10,16 @@ const api = axios.create({
 
 export default {
 
+    getCurrentMatchday: async (id) =>{
+        try {
+            const resp = await api.get(`/competitions/${id}`)
+            return resp.data.currentSeason.currentMatchday
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    },
+
     getStandings: async (id) => {
         try {
             const league = await api.get(`/competitions/${id}/standings`)

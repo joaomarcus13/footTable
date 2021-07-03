@@ -1,29 +1,24 @@
 
 import { useNavigation } from '@react-navigation/core';
-import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../assets/style/colors';
 import LeagueContext from '../contexts/contextLeague';
 
-import { SvgUri, SvgCssUri } from 'react-native-svg';
-import TeamContext from '../contexts/contextTeam';
+import {  SvgCssUri } from 'react-native-svg';
 
 
-export default ({ item }) => {
-
+export default ({ item,children }) => {
     const navigation = useNavigation();
-    //const { setTeamActive } = useContext(TeamContext)
     const { table } = useContext(LeagueContext)
 
     function goMatchDetails() {
-        //setTeamActive(item)
         navigation.navigate('MatchDetails', { item })
     }
 
     function getImg(id) {
         let t = table.filter(e => e.team.id == id)
-        //console.log(t[0].team.crestUrl)
         return t[0].team.crestUrl
     }
 
@@ -57,6 +52,7 @@ export default ({ item }) => {
                 <Text style={styles.dateText}>{getDay()}</Text>
                 <Text style={styles.dateSubText}>{getDate()}</Text>
                 {item.status === 'SCHEDULED' ? <></> : <Text style={styles.dateHourText}>{getHour()}</Text>}
+                {children}
 
             </View>
             <LinearGradient colors={[colors.blackPrimary, colors.blackSecondary]} style={styles.list}>

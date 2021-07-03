@@ -1,24 +1,21 @@
 
-import React, { useCallback, useContext, useEffect, useState ,memo} from 'react'
+import React, {  useContext, useEffect, useState,useCallback } from 'react'
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import LeagueContext from '../contexts/contextLeague'
-
 import LinearGradient from 'react-native-linear-gradient';
-
-import TableItem from '../components/tableItem'
+import TableList from '../components/tableList'
 import colors from '../assets/style/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../services/api';
-import TeamContext from '../contexts/contextTeam';
-import { useNavigation } from '@react-navigation/core';
 
 
 export default () => {
 
-    const { leagueActive, setCurrentMatchday, table, setTable } = useContext(LeagueContext)
+    const { leagueActive, table, setTable } = useContext(LeagueContext)
     const [spinner, setSpinner] = useState(true)
     const [error, setError] = useState(false)
  
+    console.log('table')
 
     async function storeData(value) {
         try {
@@ -28,7 +25,6 @@ export default () => {
             console.log("error store ", e)
         }
     }
-
 
     async function getData() {
         console.log('get Storage')
@@ -45,45 +41,29 @@ export default () => {
         }
     }
 
-
-
     async function getInfoLeague() {
 
         const league = await api.getStandings(leagueActive.id)
 
         if (league) {
             setTable(league.table)
-            setCurrentMatchday(league.currentMatchday)
+            //setCurrentMatchday(league.currentMatchday)
             setSpinner(false)
             storeData(league.table)
         } else {
             getData()
         }
-
-
     }
-
-
-    console.log('table')
 
     useEffect(() => {
         getInfoLeague()
-
-        //setTable(teste)
-
+        
 
     }, [])
 
 
-    const renderItem = ({ item }) => {
-        console.log('renderizacaoo')
-        return (
-
-            <TableItem item={item}></TableItem>
-
-        );
-    }
-
+   
+    
     if (error) {
         return (<View style={styles.container}>
             <Text style={{ color: '#fff' }}>dados não disponíveis</Text>
@@ -100,13 +80,8 @@ export default () => {
                     <Text style={styles.tableHeaderText}>SG</Text>
                     <Text style={styles.tableHeaderText}>P</Text>
                 </LinearGradient>
-                <FlatList data={table}
-                    initialNumToRender={20}
-                    maxToRenderPerBatch={10}
-                    style={styles.list}
-                    keyExtractor={item => item.position}
-                    renderItem={renderItem}>
-                </FlatList>
+                <TableList data={table}></TableList>
+                
             </View>
         )
     } else {

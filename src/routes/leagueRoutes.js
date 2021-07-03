@@ -10,14 +10,14 @@ import Matches from '../pages/Matches'
 import colors from '../assets/style/colors';
 import Header from '../components/header'
 import LeagueContext from '../contexts/contextLeague';
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/AntDesign'
 import Scorers from '../pages/Scorers'
 import MyTabBar from '../components/tabBar'
 
 
 
 export default () => {
-  const { leagueActive, setLeagueActive } = useContext(LeagueContext)
+  //const { leagueActive, setLeagueActive } = useContext(LeagueContext)
   const navigation = useNavigation()
 
   function back() {
@@ -28,7 +28,7 @@ export default () => {
     <>
       <Header>
         <TouchableOpacity onPress={back} style={styles.buttonBack}>
-          <Icon name='keyboard-backspace' size={28} color='#fff'></Icon>
+          <Icon name='left' size={20} color='#fff'></Icon>
         </TouchableOpacity>
       </Header>
       <Tab.Navigator backBehavior={'initialRoute'} tabBar={props => <MyTabBar {...props} />}>

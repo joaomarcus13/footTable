@@ -63,3 +63,5 @@ buck-out/
 ./src/services/teste.js
 ./src/services/teste2.json
 ./src/services/teste3.json
+
+./src/assets/svg

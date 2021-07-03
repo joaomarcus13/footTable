@@ -15,12 +15,12 @@
         "imgurl": "https://icons.futebol.com/competition/m/normal/192.png",
         "color": "#DBDBDB"
     },
-    "portugal": {
-        "id": 2017,
-        "name": "Primeira Liga",
-        "country": "Portugal",
-        "img": "portugueseprimeradivision.png",
-        "imgurl": "https://icons.futebol.com/competition/m/normal/483.png",
+    "spain": {
+        "id": 2014,
+        "name": "La Liga",
+        "country": "Espanha",
+        "img": "logo_laliga.png",
+        "imgurl": "https://icons.futebol.com/competition/m/normal/551.png",
         "color": "#DBDBDB"
     },
     "germany": {
@@ -47,12 +47,12 @@
         "imgurl": "https://i.pinimg.com/originals/2e/86/50/2e86505cb4d1d37b4a40a30b3162169a.png",
         "color": "#DBDBDB"
     },
-    "spain": {
-        "id": 2014,
-        "name": "La Liga",
-        "country": "Espanha",
-        "img": "logo_laliga.png",
-        "imgurl": "https://icons.futebol.com/competition/m/normal/551.png",
+    "portugal": {
+        "id": 2017,
+        "name": "Primeira Liga",
+        "country": "Portugal",
+        "img": "portugueseprimeradivision.png",
+        "imgurl": "https://icons.futebol.com/competition/m/normal/483.png",
         "color": "#DBDBDB"
     },
     "netherlands": {
@@ -61,14 +61,6 @@
         "country": "Holanda",
         "img": "logo_eredivisie.png",
         "imgurl": "https://3.bp.blogspot.com/-PLe9ezD2eRI/Wc4exeF8ftI/AAAAAAAAANU/xDvLfgsFmOUJPwpod7zkuOcTCwmByZAAwCLcBGAs/s1600/Eredivisie%2Bv2.PNG",
-        "color": "#DBDBDB"
-    },
-    "champions": {
-        "id": 2001,
-        "name": "Champions League",
-        "country": "Europa",
-        "img": "logo_cl.png",
-        "imgurl": "https://1j1axh2n1r8w2ey7w312yizm-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/uefa_champions_league-300x300.png",
         "color": "#DBDBDB"
     }
 }

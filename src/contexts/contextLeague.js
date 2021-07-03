@@ -10,9 +10,10 @@ export const ContextProviderLeague = ({ children }) => {
     const [table,setTable] = useState([])
     const [currentMatchday,setCurrentMatchday] = useState(1)
     const [darkMode,setDarkMode] = useState(true)
+    const [matches, setMatches] = useState([])
 
     return (
-        <LeagueContext.Provider value={{leagueActive,setLeagueActive,teamActive,setTeamActive,currentMatchday,setCurrentMatchday,table,setTable,darkMode,setDarkMode}}>
+        <LeagueContext.Provider value={{leagueActive,setLeagueActive,teamActive,setTeamActive,currentMatchday,setCurrentMatchday,table,setTable,darkMode,setDarkMode,matches,setMatches}}>
             {children}
         </LeagueContext.Provider>
     )

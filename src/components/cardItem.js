@@ -1,67 +1,82 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useContext, useEffect } from 'react'
-import { View, Text, StyleSheet, Image,TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import LeagueContext from '../contexts/contextLeague'
-import axios from 'axios'
+import api from '../services/api'
+import LinearGradient from 'react-native-linear-gradient'
+import colors from '../assets/style/colors'
 
-export default ({ item  }) => {
+export default ({ item }) => {
 
     const navigation = useNavigation()
-    const {setLeagueActive,setCurrentMatchday} = useContext(LeagueContext)
+    const { setLeagueActive, setCurrentMatchday } = useContext(LeagueContext)
 
-    function goLeague(item){
-        setLeagueActive(item)
-        axios.get(`http://api.football-data.org/v2/competitions/${item.id}`, { headers: { 'X-Auth-Token': '29302314f82f407cb9b903f87619a2a7' } }).then(league=>{
-              setCurrentMatchday(league.data.currentSeason.currentMatchday)
-              
-            }) 
+    async function goLeague(item) {
         navigation.navigate('Team')
+        setLeagueActive(item)
+        const currentMatchday = await api.getCurrentMatchday(item.id)
+        setCurrentMatchday(currentMatchday)
     }
 
-
-
     return (
-        <TouchableOpacity style={styles.card} onPress={()=>{goLeague(item)}} activeOpacity={0.8}>
-        <View style={[styles.item]}>
-            <Image source={ { uri: item.imgurl } }
-                style={styles.image}></Image>
-             <Text style={styles.itemText}>{item.country}</Text> 
-        </View>
+        <TouchableOpacity style={styles.card} onPress={() => { goLeague(item) }} activeOpacity={0.8}>
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} key={item.id} colors={[colors.blackSecondary, colors.blackPrimary]} style={styles.item}>
+                <View style={styles.viewImage}>
+                    <Image
+                        source={{ uri: item.imgurl }}
+                        style={styles.image}>
+                    </Image>
+                </View>
+                <View style={styles.info}>
+                    <Text style={styles.itemTextName}>{item.name}</Text>
+                    <Text style={styles.itemText}>{item.country}</Text>
+                </View>
+            </LinearGradient>
         </TouchableOpacity>
     )
 }
 
 
-
 const styles = StyleSheet.create({
     item: {
-       
-        /* alignSelf: 'center', */
-        height: 200,
-        width: '100%',
+        height: 90,
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        backgroundColor:'white',
-        
-    
+        borderBottomWidth: 0.5,
+        paddingHorizontal: 40
     },
-    card:{
-        
-        width:'30%',
-        margin:6
+    card: {
+        width: '100%',
+    },
+    viewImage: {
+        height: 65,
+        width: 65,
+        backgroundColor: colors.whitePrimary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+        borderTopRightRadius: 5,
+        borderBottomLeftRadius: 5
     },
     image: {
         height: 55,
-        width: 55
+        width: 55,
+        borderRadius: 10
+    },
+    info: {
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        marginLeft: 30
     },
     itemText: {
-        /* width: '100%', */
-        textAlign:'center',
+        textAlign: 'center',
         fontSize: 14,
-        color: 'black',
-        fontWeight:'bold',
-        /* textShadowColor: 'black',
-        textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 10 */
+        color: colors.whiteSecondary,
+        fontFamily: 'Poppins-Regular',
+    },
+    itemTextName: {
+        color: colors.whitePrimary,
+        fontFamily: 'Poppins-Regular',
+        fontSize: 18,
     }
 })

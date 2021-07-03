@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useContext } from 'react'
+import React, { useContext,memo } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import colors from '../assets/style/colors'
-import Icon from 'react-native-vector-icons/MaterialIcons'
-import LeagueContext from '../contexts/contextLeague'
+import Icon from 'react-native-vector-icons/AntDesign'
+//import LeagueContext from '../contexts/contextLeague'
 import { SvgCssUri } from 'react-native-svg';
 import TeamContext from '../contexts/contextTeam'
 
-export default () => {
+function MyTab () {
 
     const navigation = useNavigation()
     const { teamActive } = useContext(TeamContext)
@@ -20,7 +20,7 @@ export default () => {
 
         <View style={styles.header}>
             <TouchableOpacity onPress={back} style={styles.buttonBack}>
-                <Icon name='keyboard-backspace' size={28} color='#fff'></Icon>
+                <Icon name='left' size={20} color='#fff'></Icon>
             </TouchableOpacity>
             <View style={styles.headerTeam}>
                 <View style={styles.img}>
@@ -42,6 +42,7 @@ export default () => {
 }
 
 
+export default memo(MyTab)
 
 const styles = StyleSheet.create({
     header: {
@@ -79,13 +80,9 @@ const styles = StyleSheet.create({
     textBack: {
         fontSize: 30,
         color: 'white'
-
     },
-
     img: {
         width: 70,
         height: 80,
-
-
     }
 })

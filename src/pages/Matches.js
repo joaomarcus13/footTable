@@ -1,11 +1,7 @@
-
 import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableOpacityBase, ActivityIndicator } from 'react-native'
-
 import LeagueContext from '../contexts/contextLeague'
-import MatchItem from '../components/matchItem'
-import teste2 from '../services/teste2.json'
-import LinearGradient from 'react-native-linear-gradient';
+import MatchList from '../components/matchList'
 import colors from '../assets/style/colors'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,8 +14,8 @@ function DropDown() {
 }
 
 export default () => {
-    const { leagueActive, currentMatchday, setCurrentMatchday } = useContext(LeagueContext)
-    const [matches, setMatches] = useState([])
+    const { leagueActive, currentMatchday, setCurrentMatchday, matches,setMatches } = useContext(LeagueContext)
+    
     const [matcheActive, setMatcheActive] = useState([])
     const [spinner, setSpinner] = useState(true)
     const [error, setError] = useState(false)
@@ -102,19 +98,8 @@ export default () => {
                         <Icon name='angle-right' size={25} color='#fff'></Icon>
                     </TouchableOpacity>
                 </View>
-                <FlatList data={matcheActive}
+                <MatchList data={matcheActive}></MatchList>
 
-
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => {
-                        return (
-
-                            <MatchItem item={item}></MatchItem>
-
-                        );
-                    }}>
-
-                </FlatList>
             </View>
         )
     } else {

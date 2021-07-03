@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import LeagueContext from '../contexts/contextLeague'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/core'
 import { SvgCssUri } from 'react-native-svg';
 import colors from '../assets/style/colors'
@@ -26,7 +26,7 @@ export default ({ route }) => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={back} style={styles.buttonBack}>
-                    <Icon name='keyboard-backspace' size={28} color='#fff'></Icon>
+                    <Icon name='left' size={20} color='#fff'></Icon>
                 </TouchableOpacity>
                 <View style={styles.headerScore}>
                     <View style={styles.headerTeam}>
@@ -87,13 +87,11 @@ const styles = StyleSheet.create({
 
     },
     buttonBack: {
-
         position: 'absolute',
-        left: 5,
-        top: 5,
+        left: 10,
+        top: 50,
     },
     headerScore: {
-
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -104,7 +102,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         height: 50,
-
     },
     score: {
         flexDirection: 'row',

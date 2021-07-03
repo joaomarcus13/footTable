@@ -6,8 +6,9 @@
  * @flow strict-local
  */
 
-import React, { useContext, useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import leaguesJSON from '../services/leagues.json'
+import { useFocusEffect } from '@react-navigation/native';
 
 import {
     SafeAreaView,
@@ -26,6 +27,7 @@ import {
 import Header from '../components/header'
 import Item from '../components/cardItem'
 
+
 const App = () => {
 
     const [leagues, setLeagues] = useState([])
@@ -37,11 +39,6 @@ const App = () => {
             listLeagues.push(leaguesJSON[i])
         }
         setLeagues(listLeagues)
-
-        /* axios.get(`http://api.football-data.org/v2/competitions/2013`, { headers: { 'X-Auth-Token': '29302314f82f407cb9b903f87619a2a7' } }).then(league=>{
-              console.log(league.data.name)
-            }) */
-
     }
 
     /* useFocusEffect(
@@ -54,8 +51,8 @@ const App = () => {
                 // Useful for cleanup functions
             };
         }, [])
-    )
- */
+    ) */
+
 
     useEffect(() => {
 
@@ -68,25 +65,12 @@ const App = () => {
         <View style={styles.container}>
             <Header title='Foot League'></Header>
             <View style={styles.body}>
-
-                <FlatList data={leagues}
-                    style={styles.list}
-                    numColumns={3}
+                <FlatList
+                    data={leagues}
                     keyExtractor={item => item.id}
-                    renderItem={({ item }) => {
-                        return (
-
-                            <Item item={item}></Item>
-
-                        );
-                    }}>
-
+                    renderItem={({ item }) => <Item item={item}></Item>}>
                 </FlatList>
-            
-
             </View>
-
-
         </View>
     );
 };

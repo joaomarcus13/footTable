@@ -1,28 +1,30 @@
 
 import { useNavigation } from '@react-navigation/core';
-import React, { useContext, useEffect, useState,useMemo } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import React, { useContext} from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../assets/style/colors';
-import LeagueContext from '../contexts/contextLeague';
-import { SvgUri } from 'react-native-svg';
 import { SvgCssUri } from 'react-native-svg';
 import TeamContext from '../contexts/contextTeam';
+//import Svg from '../assets/images/1783.svg'
+//import SvgUri from 'react-native-svg-uri';
 
 const darkMode = true
 
-export default ({ item }) => {
+
+function Item ({ item }) {
     const name = item.team.name.substring(0, 19)
     const navigation = useNavigation();
-    const { setTeamActive } = useContext(TeamContext)
+    const { handleTeamActive } = useContext(TeamContext)
 
     function goTeamDetails() {
         navigation.navigate('TeamDetails')
-        setTeamActive(item)
+        handleTeamActive(item)
     }
 
     console.log('table item')
-    
+   
+
 
     return (
         <TouchableOpacity onPress={goTeamDetails} activeOpacity={0.8}>
@@ -36,14 +38,15 @@ export default ({ item }) => {
                 </Text>
 
                 <View style={styles.img}>
-                    <SvgCssUri
+                     <SvgCssUri
                         fill={'black'}
                        
                         viewBox={item.team.id == 64 ? "0 -20 450 450" : "0 -20 260 260"}
                         width='40'
                         height='40'
                         uri={item.team.crestUrl}
-                    />
+                    /> 
+                   
                 </View>
 
                 <Text
@@ -67,6 +70,8 @@ export default ({ item }) => {
         </TouchableOpacity>
     )
 }
+
+
 
 const styles = StyleSheet.create({
     list: {
@@ -92,3 +97,12 @@ const styles = StyleSheet.create({
         width: '10%'
     }
 })
+
+
+
+
+
+
+
+
+export default React.memo(Item)

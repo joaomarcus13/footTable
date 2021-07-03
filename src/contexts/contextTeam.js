@@ -6,10 +6,13 @@ export const ContextProviderTeam = ({ children }) => {
 
 
     const [teamActive,setTeamActive] = useState(null)
-  
+    
+    function handleTeamActive(item){
+        setTeamActive(item)
+    }
 
     return (
-        <TeamContext.Provider value={{teamActive,setTeamActive}}>
+        <TeamContext.Provider value={{teamActive,handleTeamActive}}>
             {children}
         </TeamContext.Provider>
     )

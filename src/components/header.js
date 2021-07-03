@@ -1,34 +1,28 @@
 
-import React, { useContext, useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
 import colors from '../assets/style/colors'
 import LeagueContext from '../contexts/contextLeague'
 
 export default ({ title,children }) => {
-
   
     const { leagueActive } = useContext(LeagueContext)
-
-  
 
     return (
         <View style={styles.header}>
             {children}
          
-            <Text style={styles.headerText}>{leagueActive?leagueActive.name:title}</Text>
+            <Text style={styles.headerText}>{title||leagueActive.name||'Foot League'}</Text>
         </View>
     )
 
 }
 
-
-
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center', 
-       /*  justifyContent: 'flex-start', */
         backgroundColor: colors.black,
         height: '12%',
         width: "100%",
@@ -42,8 +36,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Regular',
         fontSize: 20,
         paddingLeft: 20,
-      
     },
-   
    
 })
